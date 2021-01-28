@@ -7,6 +7,9 @@ added rdap support to tlds, tlds they do have rdap will have `rdapServers` array
 ## idn support
 if the tld is [IDN](https://en.wikipedia.org/wiki/Internationalized_domain_name), then the property `isIDN` will be set to `true`
 
+## single file support
+Added `tlds/` folder for dynamically loading files instead of loading and keeping single .json file in memory
+
 ## sampleDomains Property 
 sampleDomains property contains examples of domains they are active and registered under that particular tld. These domains are taken from internet randomly. I do not have any relationship with these domains. These domains are there to verify whois servers at the end. Imagine you have a tld `abbott`, how do you want to test the whoisServer with a valid .abbott domain? That is the usage of sampleDomains property. These domains are taken randomly and might change on every commit. Do not stick to them. Final goal is to have at least 10 samples per tld
 
