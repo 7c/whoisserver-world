@@ -1,5 +1,19 @@
 # whoisserver-world
-This repo is (for now) designed to be data layer for other repos. I plan to keep this list up2date. Most of the properties per tld is public record. 
+library with parsed data to support whois operations. Library contains information about every TLD available
+
+
+# install
+```
+npm i --save whoisserver-world
+```
+
+# Usage
+```
+const { tldDetails } = require('whoisserver-world')
+console.log(tldDetails('com'))
+```
+
+# Features
 
 ## rdap support
 added rdap support to tlds, tlds they do have rdap will have `rdapServers` array property

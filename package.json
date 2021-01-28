@@ -1,0 +1,21 @@
+{
+  "name": "whoisserver-world",
+  "version": "1.0.1",
+  "description": "whoisserver data for all available TLDs. Kept up-to-date. Supports IDN, RDAP, WHOIS",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha --exit tests/*js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/7c/whoisserver-world"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "should": "^13.2.3"
+  }
+}
