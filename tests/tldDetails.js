@@ -4,7 +4,7 @@ var whoisservers = require('./../whoisservers.json')
 
 describe('tldDetails function',function() {
     this.timeout(0)
-    
+
     it('basic checks',function() {
         expect(tldDetails('notexisting')).to.be.false
     })
@@ -13,7 +13,7 @@ describe('tldDetails function',function() {
         // iterate over all tlds
         for(var tld in whoisservers) {
             // var tld = 'com'
-            var tld_com = tldDetails(tld)
+            var tld_com = tldDetails(' '+tld.toUpperCase())
             // console.log(tld_com)
             expect(tld_com).to.be.a('object')
             expect(tld_com).property('tld').eq(tld)
