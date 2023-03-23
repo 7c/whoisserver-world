@@ -9,7 +9,7 @@ npm i --save whoisserver-world
 
 # Usage
 ```
-const { tldDetails,tlds } = require('whoisserver-world')
+const { tldDetails,tlds,parseDomain } = require('whoisserver-world')
 
 console.log(tlds())
 ## returns json object with tlds as key
@@ -54,6 +54,33 @@ console.log(tldDetails('com'))
 ```
 
 # Features
+
+## parseDomain
+this function parses given hostnames to domains and tlds, very useful tool if you do not want to deal with PSL parsers.
+`console.log(parseDomain("sub.test.com"))`
+returns
+```
+{
+  hostname: 'sub.test.com',
+  tldData: {
+    tld: 'com',
+    tldUpdated: 1565740800000,
+    tldCreated: 473385600000,
+    whoisServer: [ 'whois.verisign-grs.com' ],
+    registry: 'http://www.verisigninc.com',
+    ianaUrl: 'https://www.iana.org/domains/root/db/com.html',
+    t: 1672688512597,
+    version: 1,
+    sampleDomains: { com: [Array] },
+    type: 'generic',
+    isIDN: false,
+    rdapServers: [ 'https://rdap.verisign.com/com/v1/domain/' ],
+    rdapUpdated: 1658865599106
+  },
+  domain: 'test.com',
+  tld: 'com'
+}
+```
 
 ## rdap support
 added rdap support to tlds, tlds they do have rdap will have `rdapServers` array property
