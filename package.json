@@ -1,6 +1,6 @@
 {
   "name": "whoisserver-world",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "whoisserver data for all available TLDs. Kept up-to-date. Supports IDN, RDAP, WHOIS",
   "main": "index.js",
   "scripts": {
@@ -17,5 +17,8 @@
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "should": "^13.2.3"
+  },
+  "dependencies": {
+    "whoisserver-world": "^1.0.23"
   }
 }
