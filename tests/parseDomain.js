@@ -1,4 +1,5 @@
 const chalk = require('chalk')
+const punycode = require('punycode/')
 const fs = require('fs')
 const expect = require('chai').expect
 const { parseDomain } = require('../index')
@@ -117,6 +118,7 @@ describe('Function: parseDomain', function () {
             expect(parseDomain(sltld)).to.be.null
             const hostname = `domain1.` + sltld.toUpperCase()
             const t = parseDomain(hostname)
+            // console.log(t)
             expect(t).property('domain').eq(hostname.toLowerCase())
             const hostname2 = `sub1.domain1.` + sltld.toUpperCase()
             const t2 = parseDomain(hostname2)
@@ -128,6 +130,14 @@ describe('Function: parseDomain', function () {
 
     it('valid tld part but invalid domain part', async function () {
         expect(parseDomain('$test.in')).eq(null)
+        expect(parseDomain('"test.in')).eq(null)
+        expect(parseDomain("'test.in")).eq(null)
+        expect(parseDomain("\'test.in")).eq(null)
+        expect(parseDomain('\"test.in')).eq(null)
+        expect(parseDomain('static..gr"')).eq(null)
+        expect(parseDomain('\\\\\\\\"test.in')).eq(null)
+        expect(parseDomain('\\test.in')).eq(null)
+        expect(parseDomain("\\test.in")).eq(null)
         expect(parseDomain('test. in')).eq(null)
         expect(parseDomain('test. in')).eq(null)
         expect(parseDomain('test . in')).eq(null)
@@ -142,6 +152,41 @@ describe('Function: parseDomain', function () {
             let parsed = parseDomain(line)
             expect(parsed).to.be.null
         }
+    })
+
+    it('we should support idn/ascii domains', async function () {
+        let domains = JSON.parse(fs.readFileSync('tests/validIDNDomains.json','utf8'))
+        for(let domain of domains) {
+            let parsed = parseDomain(domain)
+            expect(parsed).property('domain').eq(domain)
+        }
+        
+        expect(parseDomain("xn-p1ai.com").domain).eq('xn-p1ai.com')
+        expect(parseDomain("abc.xn-p1ai.com").domain).eq('xn-p1ai.com')
+        expect(parseDomain("xn-80aa2ca.xn--p1ai.com").domain).eq('xn--p1ai.com')
+    })
+
+    it('we should support unicode domains as input (at least lowercase ones)', async function () {
+        let domains = JSON.parse(fs.readFileSync('tests/validIDNDomains.json','utf8'))
+        for(let domain of domains) {
+            let unicodeDomain = punycode.toUnicode(domain)
+            let parsed = parseDomain(unicodeDomain)
+            expect(parsed).property('domain')
+        }
+    })
+
+    it('we should detect invalid idn domains', async function () {
+        let domains = JSON.parse(fs.readFileSync('tests/invalidIDNDomains.json','utf8'))
+        for(let domain of domains) {
+            let parsed = parseDomain(domain)
+            expect(parsed).to.be.null
+        }
+        expect(parseDomain("xn---p1ai.com")).to.be.null
+        expect(parseDomain("sub.xn---p1ai.com")).to.be.null
+        expect(parseDomain("sub.sub.xn---p1ai.com")).to.be.null
+        expect(parseDomain("xn---p1ai.sub.xn---p1ai.com")).to.be.null
+        expect(parseDomain("xn--p1ai.sub.xn---p1ai.com")).to.be.null
+        expect(parseDomain("xn-p1ai.sub.xn---p1ai.com")).to.be.null
     })
 
 })
