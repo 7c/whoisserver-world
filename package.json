@@ -1,6 +1,6 @@
 {
   "name": "whoisserver-world",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "whoisserver data for all available TLDs. Kept up-to-date. Supports IDN, RDAP, WHOIS",
   "main": "index.js",
   "scripts": {
@@ -15,10 +15,11 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.2.0",
+    "chalk": "^4.1.2",
     "mocha": "^8.2.1",
     "should": "^13.2.3"
   },
   "dependencies": {
-    "whoisserver-world": "^1.0.23"
+    "mybase": "^1.0.50"
   }
 }
