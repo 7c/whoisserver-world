@@ -4,7 +4,8 @@
   "description": "whoisserver data for all available TLDs. Kept up-to-date. Supports IDN, RDAP, WHOIS",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha --exit tests/*js"
+    "mocha": "node_modules/mocha/bin/mocha --exit tests/*js",
+    "test": "jest --forceExit --verbose"
   },
   "repository": {
     "type": "git",
@@ -13,14 +14,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chalk": "^4.1.2",
-    "mocha": "^8.2.1",
-    "should": "^13.2.3"
-  },
   "dependencies": {
     "mybase": "^1.0.50",
     "punycode": "^2.3.1"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.11",
+    "chai": "^4.2.0",
+    "chalk": "^4.1.2",
+    "jest": "^29.7.0",
+    "mocha": "^8.2.1",
+    "should": "^13.2.3",
+    "ts-jest": "^29.1.1"
   }
 }
