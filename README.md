@@ -59,9 +59,7 @@ console.log(tldDetails('com'))
 this function parses given hostnames to domains and tlds, very useful tool if you do not want to deal with PSL parsers. Supports ascii/punycode hostnames/domains as input. If you pass unicode domain, you must make sure it is lowercased, because .toLowerCase() does not work with unicode characters and you should know the locale and use .toLocaleLowerCase with proper region in order to make this function. This function uses .toLowerCase and this fails with unicode input domains. Generally not good idea to use unicode domains, but if you do, you must make sure it is lowercased before passing to this function.
 
 ```
-`console.log(parseDomain("sub.test.com"))`
-returns
-```
+## console.log(parseDomain("sub.test.com")) returns
 {
   hostname: 'sub.test.com',
   tldData: {
