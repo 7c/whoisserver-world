@@ -1,4 +1,3 @@
-const chalk = require('chalk')
 const punycode = require('punycode/')
 const path = require('path')
 const fs = require('fs')
