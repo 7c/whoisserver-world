@@ -1,5 +1,5 @@
 # whoisserver-world - typescript version
-library with parsed data to support whois operations. Library contains information about every TLD available
+library with parsed data to support whois operations. Library contains information about every TLD available. This library is updated bi-annually with data from IANA.
 
 
 # install
@@ -15,49 +15,26 @@ npm run test # jest tests
 ```
 
 # Usage
+Use the `Domainname` class whenever you need a safe, sanitized view of a hostname.  
+It wraps the lower-level helpers, normalizes casing, applies IDN rules, and gives you a single place to inspect the parsed result.
+
 ```ts
-const { tldDetails,tlds,parseDomain } = require('whoisserver-world')
+const { Domainname, tldDetails, tlds, parseDomain } = require('whoisserver-world')
 
-console.log(tlds())
-## returns json object with tlds as key
+const domain = new Domainname('Foo.CM.GOV.NC.TR')
+console.log(domain.hostname) // "foo.cm.gov.nc.tr"
+console.log(domain.domain)   // "cm.gov.nc.tr"
+console.log(domain.tld)      // "tr"
 
-console.log(tldDetails('com'))
+if (Domainname.isValid('mañana.com')) {
+  const unicodeDomain = new Domainname('mañana.com')
+  console.log(unicodeDomain.domain) // "xn--maana-pta.com"
+}
 
-## returns
-{ tld: 'com',
-  tldUpdated: 1507161600000,
-  tldCreated: 473385600000,
-  whoisServer: [ 'whois.verisign-grs.com' ],
-  registry: 'http://www.verisigninc.com',
-  ianaUrl: 'https://www.iana.org/domains/root/db/com.html',
-  t: 1611784353122,
-  version: 1,
-  sampleDomains:
-   { com:
-      [ 'spotify.com',
-        'google.com',
-        'googleapis.com',
-        'microsoft.com',
-        'mcafee.com',
-        'esportsflag.com',
-        'esportsguide.com',
-        'dotesports.com',
-        'msn.com',
-        'youtube.com',
-        'gamepedia.com',
-        'amazonaws.com',
-        'googlevideo.com',
-        'thegamer.com',
-        'twitter.com',
-        'ip-api.com',
-        'keywordseverywhere.com',
-        'gvt2.com',
-        'gstatic.com',
-        'appspot.com' ] },
-  type: 'generic',
-  isIDN: false,
-  rdapServers: [ 'https://rdap.verisign.com/com/v1/domain/' ],
-  rdapUpdated: 1611697132397 }
+// Raw access is still available if you need it:
+console.log(tlds()) // map of all known TLDs
+console.log(tldDetails('com')) // metadata for the .com TLD
+console.log(parseDomain('sub.test.com')) // parsed structure without Domainname wrapper
 ```
 
 # Features
@@ -104,7 +81,7 @@ sampleDomains property contains examples of domains they are active and register
 This repo is planned to be language independent (for now)
 
 ## Example Structure
-```
+```json
 {
   "aaa": {
     "tld": "aaa",
