@@ -19,7 +19,7 @@ Use the `Domainname` class whenever you need a safe, sanitized view of a hostnam
 It wraps the lower-level helpers, normalizes casing, applies IDN rules, and gives you a single place to inspect the parsed result.
 
 ```ts
-const { Domainname, tldDetails, tlds, parseDomain } = require('whoisserver-world')
+import { Domainname, tldDetails, tlds, parseDomain } from 'whoisserver-world'
 
 const domain = new Domainname('Foo.CM.GOV.NC.TR')
 console.log(domain.hostname) // "foo.cm.gov.nc.tr"
@@ -27,8 +27,8 @@ console.log(domain.domain)   // "cm.gov.nc.tr"
 console.log(domain.tld)      // "tr"
 
 if (Domainname.isValid('mañana.com')) {
-  const unicodeDomain = new Domainname('mañana.com')
-  console.log(unicodeDomain.domain) // "xn--maana-pta.com"
+    const unicodeDomain = new Domainname('mañana.com')
+    console.log(unicodeDomain.domain) // "xn--maana-pta.com"
 }
 
 // Raw access is still available if you need it:
