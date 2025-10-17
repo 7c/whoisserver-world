@@ -11,9 +11,10 @@ describe('tldDetails function',function() {
 
     it('check structure of all TLDs',function() {
         // iterate over all tlds
-        for(var tld in whoisservers) {
+        for(const tld in whoisservers) {
+            // console.log(tld)
             // var tld = 'com'
-            var tld_com = tldDetails(' '+tld.toUpperCase())
+            const tld_com = tldDetails(' '+tld.toUpperCase())
             // console.log(tld_com)
             expect(tld_com).to.be.a('object')
             expect(tld_com).property('tld').eq(tld)

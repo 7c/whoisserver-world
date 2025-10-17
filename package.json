@@ -1,8 +1,9 @@
 {
   "name": "whoisserver-world",
-  "version": "1.0.31",
-  "description": "whoisserver data for all available TLDs. Kept up-to-date. Supports IDN, RDAP, WHOIS",
+  "version": "1.1.31",
+  "description": "whoisserver data for all available TLDs. Kept up-to-date. Supports IDN, RDAP, WHOIS, Typescript",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "mocha": "node_modules/mocha/bin/mocha --exit tests/*js",
     "test": "jest --forceExit --verbose"
@@ -22,6 +23,7 @@
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.11",
+    "@types/punycode": "^2.1.4",
     "chai": "^4.2.0",
     "chalk": "^4.1.2",
     "jest": "^29.7.0",

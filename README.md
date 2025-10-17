@@ -1,14 +1,21 @@
-# whoisserver-world
+# whoisserver-world - typescript version
 library with parsed data to support whois operations. Library contains information about every TLD available
 
 
 # install
-```
+```bash
 npm i --save whoisserver-world
 ```
 
-# Usage
+# testing
+Currently there are two testing frameworks used. Mocha for node.js and Jest for TypeScript.
+```bash
+npx mocha tests/ # mocha tests
+npm run test # jest tests
 ```
+
+# Usage
+```ts
 const { tldDetails,tlds,parseDomain } = require('whoisserver-world')
 
 console.log(tlds())
