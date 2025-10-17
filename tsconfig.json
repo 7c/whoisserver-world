@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,            
     "strict": true,
     "noImplicitReturns": true, 
-    "noUnusedLocals": true, 
+    "noUnusedLocals": false, 
     "noFallthroughCasesInSwitch": true, 
     "noImplicitAny": true, 
     "strictNullChecks": true, 
@@ -18,7 +18,11 @@
     "strictPropertyInitialization": true, 
     "alwaysStrict": true, 
     "sourceMap": true,
-    "skipLibCheck": true,      
+    "declaration": true,
+    "declarationMap": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,         
     "baseUrl": ".",
     "paths": {
       "@root/*": ["./*"]
