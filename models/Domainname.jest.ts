@@ -38,4 +38,12 @@ describe("Domainname class", () => {
     it("throws for malformed punycode inputs", () => {
         expect(() => new Domainname("xn---p1ai.com")).toThrow("Invalid domain name: xn---p1ai.com")
     })
+
+    it("accepts URL objects", () => {
+        const url = new URL("https://sub.example.com:1234/path?query=value")
+        const domain = new Domainname(url)
+        expect(domain.hostname).toBe("sub.example.com")
+        expect(domain.domain).toBe("example.com")
+        expect(domain.tld).toBe("com")
+    })
 })

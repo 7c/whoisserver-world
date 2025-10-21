@@ -10,7 +10,10 @@ export interface DomainParseResult {
 
 export class Domainname {
     public data: DomainParseResult
-    constructor(hostname: string) {
+    constructor(hostname: string | URL) {
+        if (hostname instanceof URL) {
+            hostname = hostname.hostname
+        }
         const res = parseDomain(hostname)
         if (res === null) {
             throw new Error(`Invalid domain name: ${hostname}`)

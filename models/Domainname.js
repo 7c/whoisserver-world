@@ -4,6 +4,9 @@ exports.Domainname = void 0;
 const parseDomain_1 = require("../inc/parseDomain");
 class Domainname {
     constructor(hostname) {
+        if (hostname instanceof URL) {
+            hostname = hostname.hostname;
+        }
         const res = (0, parseDomain_1.parseDomain)(hostname);
         if (res === null) {
             throw new Error(`Invalid domain name: ${hostname}`);

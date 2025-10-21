@@ -7,7 +7,7 @@ export interface DomainParseResult {
 }
 export declare class Domainname {
     data: DomainParseResult;
-    constructor(hostname: string);
+    constructor(hostname: string | URL);
     static isValid(hostname: string): boolean;
     get hostname(): string;
     get domain(): string;
