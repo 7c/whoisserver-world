@@ -1,0 +1,43 @@
+# .npmignore for whoisserver-world
+#
+# Ships the runtime API + data only:
+#   index.js / index.d.ts, inc/*.{js,d.ts}, models/*.{js,d.ts}, whoisservers.json
+# Everything below is excluded from the published tarball.
+#
+# NOTE: once this file exists, npm ignores .gitignore — so type declarations
+# (*.d.ts) and the data file must be kept IN here, not excluded.
+
+# --- TypeScript sources (we ship compiled .js + .d.ts instead) ---
+# Exclude every *.ts, then add the declaration files back.
+*.ts
+!*.d.ts
+
+# --- Source maps ---
+*.map
+
+# --- Tests & fixtures ---
+tests/
+*.jest.ts
+*.test.ts
+*.test.js
+jest.config.js
+coverage/
+*.tgz
+*.gz
+*.tar
+
+# --- Build / tooling config ---
+tsconfig.json
+check-deps.js
+release.sh
+
+# NOTE: tlds/ is intentionally KEPT in the package. README's "single file
+# support" documents it as a consumer feature — loading tlds/<tld>.json
+# individually instead of holding the whole whoisservers.json in memory.
+
+# --- OS / editor cruft ---
+.DS_Store
+.vscode/
+
+# --- Misc (npm already excludes node_modules, .git, package-lock.json) ---
+node_modules/

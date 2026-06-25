@@ -1,4 +1,4 @@
-import { tlds } from '../../index'
+import { tlds, tldDetails } from '../../index'
 
 describe("tlds", () => {
     const TLDS = tlds()
@@ -9,6 +9,23 @@ describe("tlds", () => {
 
     test('should be defined', () => {
         expect(tlds).toBeDefined()
+    })
+
+    test('contains common TLDs and cross-checks tldDetails', () => {
+        expect(TLDS).toBeTruthy()
+        if (TLDS) {
+            expect(TLDS).toHaveProperty('com')
+            expect(TLDS).toHaveProperty('net')
+            expect(TLDS).toHaveProperty('org')
+
+            // cross test file based loose tld against tldDetails which is the
+            // concatenated form of them
+            for (const tld of Object.keys(TLDS)) {
+                const details = tldDetails(tld)
+                expect(details).toBeTruthy()
+                if (details) expect(details.tld).toBe(tld)
+            }
+        }
     })
 
     test('should return an object and not empty and validate content', () => {
