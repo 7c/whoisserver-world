@@ -10,8 +10,7 @@ npm i --save whoisserver-world
 # testing
 Currently there are two testing frameworks used. Mocha for node.js and Jest for TypeScript.
 ```bash
-npx mocha tests/ # mocha tests
-npm run test # jest tests
+npm run test
 ```
 
 # Usage
