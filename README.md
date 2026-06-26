@@ -1,6 +1,8 @@
 # whoisserver-world - typescript version
 library with parsed data to support whois operations. Library contains information about every TLD available. This library is updated bi-annually with data from IANA.
 
+> 📖 **[Full TLD overview & stats → docs/overview.md](docs/overview.md)** — every TLD with its WHOIS/RDAP servers, registry, IDN flag, sample domains and dates.
+
 
 # install
 ```bash
