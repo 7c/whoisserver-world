@@ -28,6 +28,6 @@
     "ts-jest": "^29.1.1"
   },
   "overrides": {
-    "js-yaml": "^4.2.0"
+    "js-yaml": "^4.3.2"
   }
 }
